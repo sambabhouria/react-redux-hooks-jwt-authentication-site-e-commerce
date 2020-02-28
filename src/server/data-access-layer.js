@@ -1,5 +1,5 @@
 const { DataStore } = require("notarealdb");
-const store = new DataStore("./src/backend/data-base");
+const store = new DataStore("./src/server/data-base");
 
 module.exports = {
   users: store.collection("users"),

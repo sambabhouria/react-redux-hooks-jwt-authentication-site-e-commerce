@@ -79,8 +79,6 @@ export default class AuthHelperMethods {
   };
 
   _checkStatus = response => {
-    console.log("TCL: AuthHelperMethods -> response", response);
-
     // raises an error in case response status is not a success
     if (response.status >= 200 && response.status < 300) {
       // Success status lies between 200 to 300

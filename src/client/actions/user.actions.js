@@ -1,5 +1,5 @@
 import { userConstants } from "../constants";
-import { userService } from "../services";
+import { userService } from "../servives";
 import AuthHelperMethods from "../authentication/auth-helper-methods";
 import { alertActions } from "./";
 import { history } from "../helpers";
@@ -18,28 +18,23 @@ function login(username, password) {
     new AuthHelperMethods()
       .login(username, password)
       .then(res => {
-        if (res === false) {
+        console.log("TCL: login -> res", res);
+
+        if (res.success === false) {
           return alert("Sorry those credentials don't exist!");
         }
-        if (res === true) {
-          // const user = {
-          //   username,
-          //   isLogged: res.success,
-          //   token: res.token
-          // };
-          // dispatch(success(user));
-          // history.push("/");
+        if (res.success === true) {
+          const user = {
+            username,
+            token: res.token
+          };
+
+          dispatch(success(user));
+          history.push("/");
         }
       })
       .catch(err => {
-        console.log("valeur du res====> ", err);
         dispatch(failure(err));
-        dispatch(alertActions.error(err));
-        // if (err === "Unauthorized" || err === "Internal Server Error") {
-        //   // this.setState({
-        //   //   visible: true
-        //   // });
-        // }
       });
   };
 

@@ -41,7 +41,7 @@ const LogIn = (req, res) => {
 
   if (user === null) {
     return res.status(401).send({
-      sucess: false,
+      success: false,
       token: null,
       err: "User don't exist"
     });
@@ -58,14 +58,14 @@ const LogIn = (req, res) => {
       // here, the max age is in milliseconds, so we multiply by 1000
       res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 });
       return res.status(200).send({
-        sucess: true,
+        success: true,
         err: null,
         token
       });
     } else {
       console.log("le mode de passe n'est bon ");
       res.status(401).json({
-        sucess: false,
+        success: false,
         token: null,
         err: "Entered Password and Hash do not match!"
       });

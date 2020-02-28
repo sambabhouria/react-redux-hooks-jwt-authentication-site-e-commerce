@@ -8,9 +8,12 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "cookie-parser": "^1.4.4",
+    "disable-scroll": "^0.5.1",
     "express": "^4.17.1",
+    "json-server": "^0.16.1",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.7.0",
     "jwt-decode": "^2.2.0",
@@ -29,7 +32,9 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all --parallel client server ",
+    "client": "react-scripts start",
+    "server": " nodemon src/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
