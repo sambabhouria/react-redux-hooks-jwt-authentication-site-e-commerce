@@ -25,6 +25,7 @@ export default function withAuth(AuthComponent) {
             confirm: confirm,
             loaded: true
           });
+          // this.props.history.push("/");
         } catch (err) {
           /* Oh snap! Looks like there's an error so we'll print it out and log the user out for security reasons. */
           console.log(err);

@@ -4,7 +4,6 @@ import AuthHelperMethods from "../authentication/auth-helper-methods";
 import { alertActions } from "./";
 import { history } from "../helpers";
 import axios from "axios";
-
 export const userActions = {
   login,
   logout,
@@ -18,8 +17,6 @@ function login(username, password) {
     new AuthHelperMethods()
       .login(username, password)
       .then(res => {
-        console.log("TCL: login -> res", res);
-
         if (res.success === false) {
           return alert("Sorry those credentials don't exist!");
         }

@@ -34,11 +34,13 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <div className="main-page">
-          <NavBar />
+        <div className="App">
+          <div className="main-page">
+            <NavBar />
 
-          <div className="bottom-section">
-            <button onClick={this._handleLogout}>LOGOUT</button>
+            <div className="bottom-section">
+              <button onClick={this._handleLogout}>LOGOUT</button>
+            </div>
           </div>
         </div>
       </div>
@@ -51,7 +53,7 @@ function mapStateToProps(state) {
   const { authentication, alert } = state;
 
   return {
-    loggingIn: authentication.loggingIn,
+    loggedIn: authentication.loggingIn,
     alert
   };
 }
