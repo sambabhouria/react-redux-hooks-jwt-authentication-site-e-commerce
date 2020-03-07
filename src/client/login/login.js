@@ -1,104 +1,109 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-/* We want to import our 'AuthHelperMethods' component in order to send a login request */
-//import AuthHelperMethods from "../authentication/auth-helper-methods";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
-import "./login.css";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "../modal";
 import { userActions } from "../actions";
+import "./login.css";
 
-class Login extends Component {
-  /* In order to utilize our authentication methods within the AuthService class, we want to instantiate a new object */
-  // Auth = new AuthHelperMethods();
-
-  state = {
+function Login() {
+  const [inputs, setInputs] = useState({
     username: "",
-    password: "",
-    visible: false
-  };
+    password: ""
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { username, password } = inputs;
+  const loggingIn = useSelector(state => state.authentication.loggingIn);
 
-  /* Fired off every time the use enters something into the input fields */
-  _handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+  // reset login status
+  const alert = useSelector(state => state.alert);
+  const dispatch = useDispatch();
 
-  handleFormSubmit = e => {
-    e.preventDefault();
+  useEffect(() => {
+    alert.message && setHidden(true);
 
-    const { dispatch } = this.props;
-    if (this.state.username && this.state.password) {
-      dispatch(userActions.login(this.state.username, this.state.password));
-    }
-  };
+    dispatch(userActions.logout());
+  }, [dispatch, alert]);
 
-  closeModal() {
-    this.setState({
-      visible: false
-    });
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  // componentDidUpdate(nextProps) {
-  //   const { loggedIn } = this.props;
+  function handleSubmit(e) {
+    e.preventDefault();
+    // setHidden(true);
+    setSubmitted(true);
+    if (username && password) {
+      dispatch(userActions.login(username, password));
+    }
+  }
 
-  //   if (nextProps.loggedIn !== loggedIn) {
-  //     if (nextProps.loggedIn === false) this.setState({ visible: !loggedIn });
-  //   }
-  // }
-
-  render() {
-    const { loggedIn, error } = this.props;
-    console.log("TCL: Login -> render -> loggingIn,error", loggedIn, error);
-
-    return (
-      <Fragment>
-        <div className="main-wrapper">
+  return (
+    <Fragment>
+      <div className="main-wrapper">
+        {/* {alert.message && (
+          <div className={`alert ${alert.type}`}>{alert.message}</div>
+        )} */}
+        {hidden ? (
+          <Modal visible={hidden} closeModal={() => setHidden(false)} />
+        ) : (
           <div className="box">
             <div className="box-header">
               <h1>Login</h1>
             </div>
-            <form className="box-form">
-              <input
-                className="form-item"
-                placeholder="Username"
-                name="username"
-                type="text"
-                onChange={this._handleChange}
-              />
-              <input
-                className="form-item"
-                placeholder="Password"
-                name="password"
-                type="password"
-                onChange={this._handleChange}
-              />
-              <button className="form-submit" onClick={this.handleFormSubmit}>
-                Login
-              </button>
+            <form name="form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label style={{ marginRight: "20px" }}>Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={username}
+                  onChange={handleChange}
+                  className={
+                    "form-item" + (submitted && !username ? " is-invalid" : "")
+                  }
+                />
+                {submitted && !username && (
+                  <div className="invalid-feedback">Username is required</div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label style={{ marginRight: "20px" }}>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                  className={
+                    "form-item" + (submitted && !password ? " is-invalid" : "")
+                  }
+                />
+                {submitted && !password && (
+                  <div className="invalid-feedback">Password is required</div>
+                )}
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary" style={{ width: "100%" }}>
+                  {loggingIn && (
+                    <span className="spinner-border spinner-border-sm mr-1"></span>
+                  )}
+                  Login
+                </button>
+                <hr className="hr-row " />
+
+                <Link className="link" to="/signup">
+                  Don't have an account?{" "}
+                  <span className="link-signup">Sign Up Here</span>
+                </Link>
+              </div>
             </form>
-            <hr className="hr-row " />
-            <Link className="link" to="/signup">
-              Don't have an account?{" "}
-              <span className="link-signup">Sign Up Here</span>
-            </Link>
           </div>
-          )}
-        </div>
-      </Fragment>
-    );
-  }
+        )}
+      </div>
+    </Fragment>
+  );
 }
 
-function mapStateToProps(state) {
-  const { loggedIn, error } = state.authentication;
-  return {
-    loggedIn,
-    error
-  };
-}
-
-const connectedLogin = connect(mapStateToProps)(Login);
-export { connectedLogin as Login };
-
-//export default Login;
+export { Login };

@@ -1,5 +1,5 @@
 import { userConstants } from "../constants";
-import { userService } from "../servives";
+import { userService } from "../services";
 import AuthHelperMethods from "../authentication/auth-helper-methods";
 import { alertActions } from "./";
 import { history } from "../helpers";
@@ -21,6 +21,7 @@ function login(username, password) {
           return alert("Sorry those credentials don't exist!");
         }
         if (res.success === true) {
+          console.log("<=====connexion established=====> ");
           const user = {
             username,
             token: res.token
@@ -32,6 +33,7 @@ function login(username, password) {
       })
       .catch(err => {
         dispatch(failure(err));
+        dispatch(alertActions.error(err));
       });
   };
 
