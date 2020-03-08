@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import AuthHelperMethods from "../authentication/auth-helper-methods";
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const Auth = new AuthHelperMethods();
-  console.log("TCL: PrivateRoute -> rest", Auth.loggedIn());
+
+  const loggedIn = useSelector(state => state.authentication.loggedIn);
+  const isLogged = Auth.loggedIn();
+  useEffect(() => {}, [loggedIn, isLogged]);
 
   return (
     <Route
       {...rest}
       render={props =>
-        Auth.loggedIn() ? (
+        loggedIn && isLogged ? (
           <Component {...props} />
         ) : (
           <Redirect

@@ -21,8 +21,7 @@ function Login() {
 
   useEffect(() => {
     alert.message && setHidden(true);
-
-    dispatch(userActions.logout());
+    //  dispatch(userActions.logout());
   }, [dispatch, alert]);
 
   function handleChange(e) {
@@ -50,7 +49,13 @@ function Login() {
             </div>
             <form name="form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label style={{ marginRight: "20px" }}>Username</label>
+                <span
+                  className="input-group-addon"
+                  style={{ fontSize: "20px", marginRight: "20px" }}
+                >
+                  <i className="fa fa-user" aria-hidden="true"></i>
+                  &nbsp; UserName
+                </span>
                 <input
                   type="text"
                   name="username"
@@ -66,7 +71,14 @@ function Login() {
               </div>
 
               <div className="form-group">
-                <label style={{ marginRight: "20px" }}>Password</label>
+                <span
+                  className="input-group-addon"
+                  style={{ fontSize: "20px", marginRight: "20px" }}
+                >
+                  <i className="fa fa-key fa-fw" aria-hidden="true"></i>
+                  &nbsp; Password
+                </span>
+
                 <input
                   type="password"
                   name="password"

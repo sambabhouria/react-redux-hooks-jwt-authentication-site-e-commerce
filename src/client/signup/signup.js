@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import "./singup.css";
 class Signup extends Component {
   state = {
     username: "",
@@ -41,6 +41,12 @@ class Signup extends Component {
               className="box-form"
               onSubmit={this.handleFormSubmit}
             >
+              <span
+                className="input-group-addon"
+                style={{ fontSize: "20px", marginRight: "20px" }}
+              >
+                <i className="fa fa-user" aria-hidden="true"></i>
+              </span>
               <input
                 placeholder="Username"
                 value={this.state.username}
@@ -57,8 +63,15 @@ class Signup extends Component {
               {this.state.submitted && !this.state.username && (
                 <div className="invalid-feedback">Username is required</div>
               )}
+
+              <span
+                className="input-group-addon"
+                style={{ fontSize: "20px", marginRight: "20px" }}
+              >
+                <i className="fa fa-key fa-fw" aria-hidden="true"></i>
+              </span>
               <input
-                placeholder="Password"
+                placeholder="password"
                 value={this.state.password}
                 name="password"
                 type="password"

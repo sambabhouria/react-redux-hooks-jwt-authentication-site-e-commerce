@@ -3,7 +3,7 @@ import { userService } from "../services";
 import AuthHelperMethods from "../authentication/auth-helper-methods";
 import { alertActions } from "./";
 import { history } from "../helpers";
-import axios from "axios";
+//import axios from "axios";
 export const userActions = {
   login,
   logout,
@@ -50,7 +50,6 @@ function login(username, password) {
 
 function logout() {
   new AuthHelperMethods().logout();
-  // history.replace("/login");
   return { type: userConstants.LOGOUT };
 }
 

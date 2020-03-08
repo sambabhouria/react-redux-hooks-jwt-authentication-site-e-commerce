@@ -3,24 +3,26 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { userActions } from "../actions";
-//import auth0Client from "../Auth";
 import "./menu-header.css";
 
 function MenuHeader(props) {
-  const loggingIn = useSelector(state => state.authentication.loggingIn);
+  const loggedIn = useSelector(state => state.authentication.loggedIn);
+  const { username } = useSelector(state => state.authentication.user);
   const dispatch = useDispatch();
   let history = useHistory();
 
   const signOut = () => {
     // reset login status
     dispatch(userActions.logout());
-    history.replace("/");
+    history.push("/");
   };
 
   return (
     <header className="header">
       <a href="/" className="logo">
-        Home
+        <span style={{ fontSize: "20px" }}>
+          <i className="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Home
+        </span>
       </a>
       <input className="menu-btn" type="checkbox" id="menu-btn" />
       <label className="menu-icon" htmlFor="menu-btn">
@@ -36,11 +38,16 @@ function MenuHeader(props) {
         <li>
           <a href="#careers">Careers</a>
         </li>
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
+        {username && (
+          <li className="modal-header">
+            <span style={{ fontSize: "20px", color: "Green" }}>
+              {username} <i className="fas fa-user"></i>
+              <i className="fas fa-unlock"></i>
+            </span>
+          </li>
+        )}
 
-        {!loggingIn && (
+        {loggedIn && (
           <li
             className="modal-header"
             onClick={() => {
