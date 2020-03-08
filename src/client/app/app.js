@@ -15,10 +15,7 @@ import AuthHelperMethods from "../authentication/auth-helper-methods";
 //Our higher order component
 import WithAuth from "../authentication/with-auth";
 
-import NavBar from "../nav-bar/nav-bar";
-
 function App() {
-  const alert = useSelector(state => state.alert);
   const dispatch = useDispatch();
 
   useEffect(() => {

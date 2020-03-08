@@ -32,7 +32,6 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // setHidden(true);
     setSubmitted(true);
     if (username && password) {
       dispatch(userActions.login(username, password));
@@ -42,9 +41,6 @@ function Login() {
   return (
     <Fragment>
       <div className="main-wrapper">
-        {/* {alert.message && (
-          <div className={`alert ${alert.type}`}>{alert.message}</div>
-        )} */}
         {hidden ? (
           <Modal visible={hidden} closeModal={() => setHidden(false)} />
         ) : (

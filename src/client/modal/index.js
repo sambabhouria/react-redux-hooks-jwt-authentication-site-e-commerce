@@ -28,7 +28,7 @@ const Modal = ({ visible, closeModal }) => {
       <Modal>
         <div style={modalStyle}>
           <span style={{ width: "350px" }} className="alert alert-danger">
-            Authent Error: Bad username or password trye again
+            Error: Bad username or password try again
           </span>
           <p>Username: test</p>
           <p>Password: test123</p>

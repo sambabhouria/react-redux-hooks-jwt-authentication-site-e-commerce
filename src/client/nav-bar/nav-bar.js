@@ -34,10 +34,23 @@ class NavBar extends Component {
   render() {
     const { loggingIn } = this.props;
     return (
-      <nav className="navbar navbar-dark bg-primary fixed-top">
+      <nav
+        className="navbar navbar-light fixed-top"
+        style={{ backgroundColor: "#e3f2fd" }}
+      >
         <Link className="navbar-brand" to="/">
-          Authent-Author-Secure
+          Home
         </Link>
+        <Link className="navbar-brand" to="/">
+          Link1
+        </Link>
+        <Link className="navbar-brand" to="/">
+          Link2
+        </Link>
+        <Link className="navbar-brand" to="/">
+          Link3
+        </Link>
+
         {!loggingIn && (
           <button
             className="btn btn-dark"

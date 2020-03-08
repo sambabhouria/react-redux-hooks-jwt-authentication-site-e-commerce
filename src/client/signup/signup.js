@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-//import AuthHelperMethods from "./authentication/auth-helper-methods";
-
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 class Signup extends Component {
-  //Auth = new AuthHelperMethods();
   state = {
     username: "",
     password: "",
@@ -19,7 +16,6 @@ class Signup extends Component {
   };
 
   handleFormSubmit = e => {
-    alert("totototo");
     e.preventDefault();
     this.setState({ submitted: true });
     axios
@@ -28,17 +24,9 @@ class Signup extends Component {
         password: this.state.password
       })
       .then(data => {
-        console.log("TCL: Signup -> data", data);
         this.props.history.replace("/login");
       });
   };
-
-  componentDidMount() {
-    // console.log(this.Auth.loggedIn());
-    // if (this.Auth.loggedIn()) {
-    //   this.props.history.push("/dashboard");
-    // }
-  }
 
   render() {
     return (

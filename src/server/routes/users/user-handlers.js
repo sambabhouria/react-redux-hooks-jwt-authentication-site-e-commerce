@@ -73,6 +73,14 @@ const LogIn = (req, res) => {
   });
 };
 
+function getUsers() {
+  console.log("getUsers");
+}
+
+function deleteUser() {
+  console.log("deleteUsers");
+}
+
 const welcome = (req, res) => {
   // We can obtain the session token from the requests cookies, which come with every request
   const token = req.cookies.token;
@@ -146,5 +154,7 @@ module.exports = {
   LogIn,
   welcome,
   refresh,
-  test
+  test,
+  getUsers,
+  deleteUser
 };

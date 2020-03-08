@@ -1,47 +1,57 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { userService } from "../services";
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
+import NavBar from "../nav-bar/nav-bar";
 
-    this.state = {
-      user: {},
-      users: []
-    };
-  }
+function Home() {
+  return (
+    <Router>
+      <div>
+        <NavBar />
 
-  componentDidMount() {
-    this.setState({
-      user: JSON.parse(localStorage.getItem("user")),
-      users: { loading: true }
-    });
-    userService.getAll().then(users => this.setState({ users }));
-  }
-
-  render() {
-    const { user, users } = this.state;
-    return (
-      <div className="col-md-6 col-md-offset-3">
-        <h1>Hi {user.firstName}!</h1>
-        <p>You're logged in with React & Basic HTTP Authentication!!</p>
-        <h3>Users from secure api end point:</h3>
-        {users.loading && <em>Loading users...</em>}
-        {users.length && (
-          <ul>
-            {users.map((user, index) => (
-              <li key={user.id}>{user.firstName + " " + user.lastName}</li>
-            ))}
-          </ul>
-        )}
-        <p>
-          <Link to="/login">Logout</Link>
-        </p>
+        <Switch>
+          <Route exact path="/">
+            <Home1 />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
       </div>
-    );
-  }
+    </Router>
+  );
+}
+
+// You can think of these components as "pages"
+// in your app.
+
+function Home1() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
 }
 
 export { Home };
