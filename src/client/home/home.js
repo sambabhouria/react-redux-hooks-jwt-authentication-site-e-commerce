@@ -1,16 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import { userService } from "../services";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import NavBar from "../nav-bar/nav-bar";
+import MenuHeader from "../nav-bar/menu-header";
 
 function Home() {
   return (
     <Router>
       <div>
-        <NavBar />
-
+        <MenuHeader />
         <Switch>
           <Route exact path="/">
             <Home1 />
@@ -26,9 +24,6 @@ function Home() {
     </Router>
   );
 }
-
-// You can think of these components as "pages"
-// in your app.
 
 function Home1() {
   return (

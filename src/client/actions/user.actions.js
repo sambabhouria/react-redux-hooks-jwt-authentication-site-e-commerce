@@ -49,7 +49,8 @@ function login(username, password) {
 }
 
 function logout() {
-  userService.logout();
+  new AuthHelperMethods().logout();
+  // history.replace("/login");
   return { type: userConstants.LOGOUT };
 }
 

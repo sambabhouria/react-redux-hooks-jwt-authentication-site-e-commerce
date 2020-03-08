@@ -25,11 +25,6 @@ function App() {
     });
   }, []);
 
-  // _handleLogout = () => {
-  //   this.Auth.logout();
-  //   this.props.history.replace("/login");
-  // };
-
   return (
     <div className="App">
       <div className="App">
