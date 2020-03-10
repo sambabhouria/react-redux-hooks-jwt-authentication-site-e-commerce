@@ -1,78 +1,80 @@
-import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { compose } from "redux";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { userActions } from "../actions";
+import logo from "./logo.svg";
+import "./nav-bar.css";
 
-class NavBar extends Component {
-  constructor(props) {
-    super(props);
+function Navbar(props) {
+  const loggedIn = useSelector(state => state.authentication.loggedIn);
+  const { username } = useSelector(state => state.authentication.user);
+  const dispatch = useDispatch();
+  let history = useHistory();
 
-    this.state = {
-      isAuthenticated: false
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.loggingIn !== this.props.loggingIn) {
-      this.setState({
-        isAuthenticated: this.props.loggingIn
-      });
-    }
-  }
-
-  signIn = () => {
-    this.props.history.push("/login");
-  };
-
-  signOut = () => {
+  const signOut = () => {
     // reset login status
-    this.props.dispatch(userActions.logout());
-    this.props.history.replace("/");
+    dispatch(userActions.logout());
+    history.push("/");
   };
 
-  render() {
-    const { loggingIn } = this.props;
-    return (
-      <nav
-        className="navbar navbar-light fixed-top"
-        style={{ backgroundColor: "#e3f2fd" }}
-      >
-        <Link className="navbar-brand" to="/">
-          Home
-        </Link>
-        <Link className="navbar-brand" to="/">
-          Link1
-        </Link>
-        <Link className="navbar-brand" to="/">
-          Link2
-        </Link>
-        <Link className="navbar-brand" to="/">
-          Link3
-        </Link>
+  const goToCart = () => {
+    history.push("/cart");
+  };
 
-        {!loggingIn && (
-          <button
-            className="btn btn-dark"
+  return (
+    <header className="header">
+      <Link to="/" className="logo">
+        <img src={logo} alt="store" className="navbar-brand" />
+      </Link>
+
+      <a href="/" className="logo">
+        Products
+      </a>
+      <input className="menu-btn" type="checkbox" id="menu-btn" />
+      <label className="menu-icon" htmlFor="menu-btn">
+        <span className="navicon"></span>
+      </label>
+      <ul className="menu">
+        <li>
+          <a href="#about">Contact Us</a>
+        </li>
+        <li
+          className="modal-header"
+          style={{ borderBottom: "none" }}
+          onClick={() => {
+            goToCart();
+          }}
+        >
+          <span style={{ fontSize: "20px", color: "BLUE" }}>
+            <i className="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;My Cart
+          </span>
+        </li>
+        {username && (
+          <li className="modal-header" style={{ borderBottom: "none" }}>
+            <span style={{ fontSize: "20px", color: "Green" }}>
+              <i className="fas fa-user"></i>&nbsp;
+              {username}
+            </span>
+          </li>
+        )}
+
+        {loggedIn && (
+          <li
+            className="modal-header"
+            style={{ borderBottom: "none" }}
             onClick={() => {
-              this.signIn();
+              signOut();
             }}
           >
-            Log Out
-          </button>
+            <span style={{ fontSize: "20px", color: "Tomato" }}>
+              Logout <i className="fas fa-lock"></i>
+            </span>
+          </li>
         )}
-      </nav>
-    );
-  }
+      </ul>
+    </header>
+  );
 }
 
-function mapStateToProps(state) {
-  const { loggingIn } = state.authentication;
-  return {
-    loggingIn
-  };
-}
-
-const enhance = compose(withRouter, connect(mapStateToProps));
-
-export default enhance(NavBar);
+export default Navbar;
