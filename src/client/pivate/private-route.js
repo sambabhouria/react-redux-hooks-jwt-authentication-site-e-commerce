@@ -6,8 +6,16 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
   const Auth = new AuthHelperMethods();
 
   const loggedIn = useSelector(state => state.authentication.loggedIn);
+
   const isLogged = Auth.loggedIn();
-  useEffect(() => {}, [loggedIn, isLogged]);
+
+  useEffect(() => {
+    console.log(
+      "TCL: PrivateRoute -> loggedIn->isLogged =====>",
+      loggedIn,
+      isLogged
+    );
+  }, [loggedIn, isLogged]);
 
   return (
     <Route

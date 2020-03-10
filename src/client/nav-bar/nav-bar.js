@@ -22,15 +22,29 @@ function Navbar(props) {
     history.push("/cart");
   };
 
+  const goToHome = () => {
+    history.push("/");
+  };
+
   return (
     <header className="header">
-      <Link to="/" className="logo">
+      <li
+        onClick={() => {
+          goToHome();
+        }}
+        className="logo"
+      >
         <img src={logo} alt="store" className="navbar-brand" />
-      </Link>
+      </li>
 
-      <a href="/" className="logo">
+      <li
+        onClick={() => {
+          goToHome();
+        }}
+        className="logo"
+      >
         Products
-      </a>
+      </li>
       <input className="menu-btn" type="checkbox" id="menu-btn" />
       <label className="menu-icon" htmlFor="menu-btn">
         <span className="navicon"></span>
