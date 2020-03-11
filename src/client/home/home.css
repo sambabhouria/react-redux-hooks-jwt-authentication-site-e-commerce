@@ -7,7 +7,7 @@
 }
 
 header {
-  height: 60px;
+  height: auto;
 }
 
 footer {
@@ -21,4 +21,5 @@ footer {
 
 main {
   flex: 1;
+  margin-top: 40px;
 }

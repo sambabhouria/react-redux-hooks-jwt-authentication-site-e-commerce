@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { userActions } from "../actions";
 import logo from "./logo.svg";
 import "./nav-bar.css";
