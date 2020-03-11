@@ -1,0 +1,9 @@
+.bigcart {
+  background: url(./empty-cart.png);
+  background-position: 0px 11px;
+  background-repeat: no-repeat;
+  width: 155px;
+  height: 120px;
+  align-items: center;
+  margin: 0 0 40px 60px;
+}

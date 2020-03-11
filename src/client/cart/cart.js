@@ -4,7 +4,7 @@ import CartColumns from "./cart-columns";
 import CartList from "./cart-list";
 import CartTotals from "./cart-totals";
 import { ProductConsumer } from "../context/context";
-import EmptyCart from "./cmpty-cart";
+import EmptyCart from "./empty-cart";
 export default class Store extends Component {
   render() {
     return (

@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./empty-cart.css";
 export default function EmptyCart() {
   return (
     <div className="container mt-5">
