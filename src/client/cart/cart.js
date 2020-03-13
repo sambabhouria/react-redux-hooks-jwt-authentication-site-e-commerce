@@ -8,7 +8,7 @@ import EmptyCart from "./empty-cart";
 export default class Store extends Component {
   render() {
     return (
-      <section>
+      <section style={{ marginTop: "30px" }}>
         <ProductConsumer>
           {value => {
             const { cart } = value;

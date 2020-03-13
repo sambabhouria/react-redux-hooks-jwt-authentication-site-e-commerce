@@ -11,6 +11,7 @@ export default class CartTotals extends Component {
       clearCart
     } = this.props.value;
     const { history } = this.props;
+    console.log("TCL: CartTotals -> render -> history", history);
     const emptyCart = cart.length === 0 ? true : false;
     return (
       <React.Fragment>
