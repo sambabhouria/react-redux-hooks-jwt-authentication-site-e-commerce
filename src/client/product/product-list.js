@@ -9,6 +9,7 @@ export default class ProductList extends Component {
     products: storeProducts
   };
   render() {
+    console.log("TCL: ProductList -> render -> storeProducts", storeProducts);
     return (
       <React.Fragment>
         <ProductWrapper className="py-5">

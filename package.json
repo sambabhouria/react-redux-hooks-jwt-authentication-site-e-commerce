@@ -12,6 +12,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "cookie-parser": "^1.4.4",
+    "countries-api": "^2.0.2",
     "disable-scroll": "^0.5.1",
     "express": "^4.17.1",
     "json-server": "^0.16.1",

@@ -6,6 +6,8 @@ import { ProductProvider } from "../context/context";
 import Details from "../product/details";
 import Cart from "../cart/cart";
 import Default from "../default/default";
+import CountryApp from "../pagination/country-app";
+
 import "./home.css";
 
 function Home() {
@@ -21,6 +23,7 @@ function Home() {
               <Route exact path="/" component={ProductList} />
               <Route path="/details" component={Details} />
               <Route path="/cart" component={Cart} />
+              <Route path="/country" component={CountryApp} />
               <Route component={Default} />
             </Switch>
           </main>
