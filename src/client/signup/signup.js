@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <div className="main-wrapper">
           <div className="box">
             <div className="box-header">
@@ -98,7 +98,7 @@ class Signup extends Component {
             </Link>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
