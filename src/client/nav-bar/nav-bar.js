@@ -25,10 +25,6 @@ function Navbar(props) {
     history.push("/");
   };
 
-  const goToCountry = () => {
-    history.push("/country");
-  };
-
   return (
     <header className="header">
       <li
@@ -55,15 +51,6 @@ function Navbar(props) {
       <ul className="menu">
         <li>
           <a href="#about">Contact Us</a>
-        </li>
-        <li
-          className="modal-header"
-          style={{ borderBottom: "none" }}
-          onClick={() => {
-            goToCountry();
-          }}
-        >
-          Country
         </li>
         <li
           className="modal-header"

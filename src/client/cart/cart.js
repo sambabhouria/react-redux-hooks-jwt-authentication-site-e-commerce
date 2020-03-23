@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Title from "../product/title";
 import CartColumns from "./cart-columns";
 import CartList from "./cart-list";
@@ -14,12 +14,12 @@ export default class Store extends Component {
             const { cart } = value;
             if (cart.length > 0) {
               return (
-                <React.Fragment>
+                <Fragment>
                   <Title name="your" title="cart" />
                   <CartColumns />
                   <CartList value={value} />
                   <CartTotals value={value} history={this.props.history} />
-                </React.Fragment>
+                </Fragment>
               );
             } else {
               return <EmptyCart />;
