@@ -16,7 +16,6 @@ export default class ProductList extends Component {
 
   componentDidMount() {
     const products = storeProducts;
-    console.log("TCL: ProductList -> componentDidMount -> products", products);
 
     this.setState({ products });
   }
@@ -27,28 +26,15 @@ export default class ProductList extends Component {
 
     const offset = (currentPage - 1) * pageLimit;
     const currentProducts = products.slice(offset, offset + pageLimit);
-    console.log("TCL: ProductList -> currentProducts", currentProducts);
 
     this.setState({ currentPage, currentProducts, totalPages });
   };
 
   render() {
-    console.log(
-      "TCL: ProductList -> render -> this.state.products",
-      this.state.products
-    );
-    const {
-      //  allCountries,
-      products,
-      currentProducts,
-      currentPage,
-      totalPages
-    } = this.state;
+    const { products, currentProducts, currentPage, totalPages } = this.state;
 
     const totalProducts = products.length;
     if (totalProducts === 0) {
-      console.log("TCL: ProductList pas de no product found");
-
       return null;
     }
     console.log("TCL: ProductList -> render -> totalProducts", currentProducts);
@@ -63,7 +49,7 @@ export default class ProductList extends Component {
       <React.Fragment>
         <ProductWrapper className="py-5">
           <div className="container">
-            <Title name="our" title="products" />
+            <Title name="SUPER" title="SAMBA" />
             <div className="row">
               <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
                 <div className="d-flex flex-row align-items-center">

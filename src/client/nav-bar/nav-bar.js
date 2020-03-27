@@ -59,6 +59,9 @@ function Navbar(props) {
             goToCart();
           }}
         >
+          <span style={{ fontSize: "20px", color: "RED" }}>
+            {false ? 10 : 0} &nbsp;
+          </span>
           <span style={{ fontSize: "20px", color: "BLUE" }}>
             <i className="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;My Cart
           </span>
