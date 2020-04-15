@@ -25,12 +25,12 @@ app.use(cookieParser());
 app.use("/", routes);
 
 // Turn on that server!
-app.listen(port, error => {
+app.listen(port, (error) => {
   if (error) {
     console.error(error);
   } else {
     console.info(
-      "==> 🌎 📺 🙏 🚀 ⛵️ 💎 🛳  🦁 🍰 🏅✌️+❤️ Listening on port.",
+      "==>🗑 🔨🔍🚚🔗 🌎 📺 🙏 🚀 ⛵️ 💎 🛳  🦁 🍰 💳🏅  🐊💳   ✌️+❤️ Listening on port.",
       port
     );
   }

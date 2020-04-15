@@ -11,7 +11,7 @@ class ProductProvider extends Component {
     modalProduct: detailProduct,
     cartSubTotal: 0,
     cartTax: 0,
-    cartTotal: 0
+    cartTotal: 0,
   };
   componentDidMount() {
     this.setProducts();
@@ -19,7 +19,7 @@ class ProductProvider extends Component {
 
   setProducts = () => {
     let products = [];
-    storeProducts.forEach(item => {
+    storeProducts.forEach((item) => {
       const singleItem = { ...item };
       products = [...products, singleItem];
     });
@@ -28,17 +28,17 @@ class ProductProvider extends Component {
     }, this.checkCartItems);
   };
 
-  getItem = id => {
-    const product = this.state.products.find(item => item.id === id);
+  getItem = (id) => {
+    const product = this.state.products.find((item) => item.id === id);
     return product;
   };
-  handleDetail = id => {
+  handleDetail = (id) => {
     const product = this.getItem(id);
     this.setState(() => {
       return { detailProduct: product };
     });
   };
-  addToCart = id => {
+  addToCart = (id) => {
     let tempProducts = [...this.state.products];
     const index = tempProducts.indexOf(this.getItem(id));
     const product = tempProducts[index];
@@ -51,11 +51,11 @@ class ProductProvider extends Component {
       return {
         products: [...tempProducts],
         cart: [...this.state.cart, product],
-        detailProduct: { ...product }
+        detailProduct: { ...product },
       };
     }, this.addTotals);
   };
-  openModal = id => {
+  openModal = (id) => {
     const product = this.getItem(id);
     this.setState(() => {
       return { modalProduct: product, modalOpen: true };
@@ -66,9 +66,9 @@ class ProductProvider extends Component {
       return { modalOpen: false };
     });
   };
-  increment = id => {
+  increment = (id) => {
     let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
+    const selectedProduct = tempCart.find((item) => {
       return item.id === id;
     });
     const index = tempCart.indexOf(selectedProduct);
@@ -77,13 +77,13 @@ class ProductProvider extends Component {
     product.total = product.count * product.price;
     this.setState(() => {
       return {
-        cart: [...tempCart]
+        cart: [...tempCart],
       };
     }, this.addTotals);
   };
-  decrement = id => {
+  decrement = (id) => {
     let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
+    const selectedProduct = tempCart.find((item) => {
       return item.id === id;
     });
     const index = tempCart.indexOf(selectedProduct);
@@ -99,21 +99,21 @@ class ProductProvider extends Component {
     }
   };
   getTotals = () => {
-    // const subTotal = this.state.cart
-    //   .map(item => item.total)
+    // const subTotalCart = this.state.cart
+    //   .map((item) => item.total)
     //   .reduce((acc, curr) => {
     //     acc = acc + curr;
     //     return acc;
     //   }, 0);
     let subTotal = 0;
-    this.state.cart.map(item => (subTotal += item.total));
+    this.state.cart.map((item) => (subTotal += item.total));
     const tempTax = subTotal * 0.1;
     const tax = parseFloat(tempTax.toFixed(2));
     const total = subTotal + tax;
     return {
       subTotal,
       tax,
-      total
+      total,
     };
   };
   addTotals = () => {
@@ -123,7 +123,7 @@ class ProductProvider extends Component {
         return {
           cartSubTotal: totals.subTotal,
           cartTax: totals.tax,
-          cartTotal: totals.total
+          cartTotal: totals.total,
         };
       },
       () => {
@@ -131,7 +131,7 @@ class ProductProvider extends Component {
       }
     );
   };
-  removeItem = id => {
+  removeItem = (id) => {
     let tempProducts = [...this.state.products];
     let tempCart = [...this.state.cart];
 
@@ -141,14 +141,14 @@ class ProductProvider extends Component {
     removedProduct.count = 0;
     removedProduct.total = 0;
 
-    tempCart = tempCart.filter(item => {
+    tempCart = tempCart.filter((item) => {
       return item.id !== id;
     });
 
     this.setState(() => {
       return {
         cart: [...tempCart],
-        products: [...tempProducts]
+        products: [...tempProducts],
       };
     }, this.addTotals);
   };
@@ -175,7 +175,7 @@ class ProductProvider extends Component {
           increment: this.increment,
           decrement: this.decrement,
           removeItem: this.removeItem,
-          clearCart: this.clearCart
+          clearCart: this.clearCart,
         }}
       >
         {this.props.children}

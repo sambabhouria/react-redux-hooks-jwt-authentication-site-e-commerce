@@ -10,7 +10,7 @@ export default class Store extends Component {
     return (
       <section style={{ marginTop: "30px" }}>
         <ProductConsumer>
-          {value => {
+          {(value) => {
             const { cart } = value;
             if (cart.length > 0) {
               return (

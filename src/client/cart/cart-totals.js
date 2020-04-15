@@ -8,7 +8,7 @@ export default class CartTotals extends Component {
       cartTax,
       cartTotal,
       cart,
-      clearCart
+      clearCart,
     } = this.props.value;
     const { history } = this.props;
     console.log("TCL: CartTotals -> render -> history", history);
