@@ -15,6 +15,8 @@ function FormPanel({
   onClick,
 }) {
   const [inputs, setInputs, setSubmit] = useForm(model, submitCallback);
+  const label = "Annuler";
+  const Sendlabel = "Envoyer";
 
   const Components = {
     TextInput,
@@ -50,24 +52,16 @@ function FormPanel({
             style={{ marginBottom: "10px" }}
             type="submit"
             onClick={setSubmit}
-            value={btnName}
+            value={Sendlabel}
             className="uk-button uk-button-primary uk-margin-top"
           />
-          <button
-            type="button"
-            className="btn btn-danger uk-button uk-button-primary uk-margin-top"
+          <input
+            type="submit"
             onClick={onClick}
-
-            // style={{
-            //   color: "#fff",
-            //   border: "1px solid transparent",
-            //   cursor: "pointer",
-            //   marginTop: "10px",
-            //   marginLeft: "10px",
-            // }}
-          >
-            Annuler
-          </button>
+            value={label}
+            className="uk-button uk-button-primary uk-margin-top"
+            style={{ marginBottom: "10px", backgroundColor: "red" }}
+          />
         </div>
       </form>
     </section>
