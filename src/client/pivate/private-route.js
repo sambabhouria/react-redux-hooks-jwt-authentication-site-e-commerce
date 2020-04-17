@@ -5,22 +5,16 @@ import AuthHelperMethods from "../authentication/auth-helper-methods";
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const Auth = new AuthHelperMethods();
 
-  const loggedIn = useSelector(state => state.authentication.loggedIn);
+  const loggedIn = useSelector((state) => state.authentication.loggedIn);
 
   const isLogged = Auth.loggedIn();
 
-  useEffect(() => {
-    console.log(
-      "TCL: PrivateRoute -> loggedIn->isLogged =====>",
-      loggedIn,
-      isLogged
-    );
-  }, [loggedIn, isLogged]);
+  useEffect(() => {}, [loggedIn, isLogged]);
 
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         loggedIn && isLogged ? (
           <Component {...props} />
         ) : (
