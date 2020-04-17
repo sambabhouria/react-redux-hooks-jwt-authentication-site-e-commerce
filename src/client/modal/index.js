@@ -14,14 +14,14 @@ const modalStyle = {
     "linear-gradient( to bottom right, rgb(255, 255, 255), rgb(195, 195, 195) )",
   boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.63)",
   padding: "60px 100px",
-  width: "500px"
+  width: "500px",
 };
 
 const Modal = ({ visible, closeModal }) => {
   const [Modal] = useModal("root", {
     preventScroll: true,
     visible,
-    closeModal
+    closeModal,
   });
   return (
     <div>

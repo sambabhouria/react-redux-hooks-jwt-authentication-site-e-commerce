@@ -11,7 +11,7 @@ export default class ProductList extends Component {
     products: [],
     currentProducts: [],
     currentPage: null,
-    totalPages: null
+    totalPages: null,
   };
 
   componentDidMount() {
@@ -20,7 +20,7 @@ export default class ProductList extends Component {
     this.setState({ products });
   }
 
-  onPageChanged = data => {
+  onPageChanged = (data) => {
     const { products } = this.state;
     const { currentPage, totalPages, pageLimit } = data;
 
@@ -37,10 +37,9 @@ export default class ProductList extends Component {
     if (totalProducts === 0) {
       return null;
     }
-    console.log("TCL: ProductList -> render -> totalProducts", currentProducts);
     const headerClass = [
       "text-dark py-2 pr-4 m-0",
-      currentPage ? "border-gray border-right" : ""
+      currentPage ? "border-gray border-right" : "",
     ]
       .join(" ")
       .trim();
@@ -77,7 +76,7 @@ export default class ProductList extends Component {
 
               <ProductConsumer>
                 {() => {
-                  return currentProducts.map(product => {
+                  return currentProducts.map((product) => {
                     return <Product key={product.id} product={product} />;
                   });
                 }}
