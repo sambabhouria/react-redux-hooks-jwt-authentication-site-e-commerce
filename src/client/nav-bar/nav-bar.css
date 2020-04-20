@@ -27,6 +27,7 @@ a {
   text-decoration: none;
 }
 
+/* here for selected menu  */
 .header li a:hover,
 .header .menu-btn:hover {
   background-color: #f4f4f4;

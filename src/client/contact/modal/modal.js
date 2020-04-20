@@ -43,6 +43,8 @@ const Modal = ({ children, isOpen = false, close, elementId = "root" }) => {
 };
 
 const useModal = (elementId = "root", options = {}) => {
+  console.log(options);
+  const { visible } = options;
   const { preventScroll = false } = options;
   const [isOpen, setOpen] = useState(false);
   const open = useCallback(() => {
@@ -61,12 +63,12 @@ const useModal = (elementId = "root", options = {}) => {
   const ModalWrapper = useCallback(
     ({ children }) => {
       return (
-        <Modal isOpen={isOpen} close={close} elementId={elementId}>
+        <Modal isOpen={visible} close={close} elementId={elementId}>
           {children}
         </Modal>
       );
     },
-    [isOpen, close, elementId]
+    [visible, close, elementId]
   );
 
   return [ModalWrapper, open, close, isOpen];

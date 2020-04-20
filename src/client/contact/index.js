@@ -18,18 +18,22 @@ const modalStyle = {
   width: "500px",
 };
 
-const ContactModal = () => {
-  const [Modal, open, close, isOpen] = useModal("root", {
+const ContactModal = ({ visible, close }) => {
+  const [Modal] = useModal("root", {
     preventScroll: true,
+    visible,
   });
+
+  //   const [Modal, open, close, isOpen] = useModal("root", {
+  //     preventScroll: true,
+  //   });
   return (
     <div>
-      <p>Modal is Open? {isOpen ? "Yes" : "No"}</p>
-      <button onClick={open}>OPEN</button>
+      {/* <p>Modal is Open? {isOpen ? "Yes" : "No"}</p> */}
+      {/* <button onClick={open}>OPEN</button> */}
       <Modal>
         <div style={modalStyle}>
           <FormContact onClick={close} />
-          {/* <button onClick={close}>CLOSE</button> */}
         </div>
       </Modal>
     </div>

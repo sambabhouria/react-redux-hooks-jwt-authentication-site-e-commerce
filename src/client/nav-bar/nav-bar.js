@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../actions";
 import { ProductConsumer } from "../context/context";
+import ContactModal from "../contact";
 
 import logo from "./logo.svg";
 import "./nav-bar.css";
@@ -12,6 +13,7 @@ function Navbar(props) {
   const { username } = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
   let history = useHistory();
+  const [isOpened, setIsOpened] = useState(false);
 
   const signOut = () => {
     // reset login status
@@ -26,7 +28,9 @@ function Navbar(props) {
   const goToHome = () => {
     history.push("/");
   };
-
+  const openContactForm = () => {
+    setIsOpened(!isOpened);
+  };
   return (
     <header className="header">
       <ProductConsumer>
@@ -69,8 +73,16 @@ function Navbar(props) {
                 <span className="navicon"></span>
               </label>
               <ul className="menu">
-                <li>
-                  <a href="#about">Contact Us</a>
+                <li
+                  className="modal-header"
+                  style={{ borderBottom: "none" }}
+                  onClick={() => {
+                    openContactForm();
+                  }}
+                >
+                  <span style={{ fontSize: "20px", color: "black" }}>
+                    Contact Us <i className="far fa-address-book"></i>
+                  </span>
                 </li>
                 <li
                   className="modal-header"
@@ -110,6 +122,10 @@ function Navbar(props) {
                   </li>
                 )}
               </ul>
+              <ContactModal
+                visible={isOpened}
+                close={() => setIsOpened(false)}
+              />
             </Fragment>
           );
         }}

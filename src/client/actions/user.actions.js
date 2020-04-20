@@ -7,16 +7,16 @@ import { history } from "../helpers";
 export const userActions = {
   login,
   logout,
-  getAll
+  getAll,
 };
 
 function login(username, password) {
   /* In order to utilize our authentication methods within the AuthService class, we want to instantiate a new object */
 
-  return dispatch => {
+  return (dispatch) => {
     new AuthHelperMethods()
       .login(username, password)
-      .then(res => {
+      .then((res) => {
         if (res.success === false) {
           return alert("Sorry those credentials don't exist!");
         }
@@ -24,14 +24,14 @@ function login(username, password) {
           console.log("<=====connexion established=====> ");
           const user = {
             username,
-            token: res.token
+            token: res.token,
           };
 
           dispatch(success(user));
           history.push("/");
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(failure(err));
         dispatch(alertActions.error(err));
       });
@@ -54,12 +54,12 @@ function logout() {
 }
 
 function getAll() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(request());
 
     userService.getAll().then(
-      users => dispatch(success(users)),
-      error => dispatch(failure(error))
+      (users) => dispatch(success(users)),
+      (error) => dispatch(failure(error))
     );
   };
 

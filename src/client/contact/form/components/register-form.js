@@ -9,6 +9,7 @@ function RegisterForm({ onClick }) {
       registerFormModel.map((m) => m.label + ": " + m.value + ",\n").join("")
     );
     closeContactForm();
+    onClick();
   };
 
   const closeContactForm = () => {

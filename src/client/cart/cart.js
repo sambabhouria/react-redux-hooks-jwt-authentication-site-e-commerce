@@ -5,7 +5,6 @@ import CartList from "./cart-list";
 import CartTotals from "./cart-totals";
 import { ProductConsumer } from "../context/context";
 import EmptyCart from "./empty-cart";
-import ContactModal from "../contact";
 
 export default class Store extends Component {
   render() {
@@ -27,7 +26,6 @@ export default class Store extends Component {
               return (
                 <Fragment>
                   <EmptyCart />
-                  <ContactModal />
                 </Fragment>
               );
             }
