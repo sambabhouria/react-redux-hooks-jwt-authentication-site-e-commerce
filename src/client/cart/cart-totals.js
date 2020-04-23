@@ -1,7 +1,18 @@
 import React, { Component } from "react";
-import PayPalButton from "./pay-pal-button";
 import { Link } from "react-router-dom";
+
+import CheckoutModal from "../checkout";
 export default class CartTotals extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOpened: false };
+  }
+
+  openCheckoutForm = () => {
+    //this.setState({ isOpened: !this.state.isOpened });
+    this.setState({ isOpened: true });
+  };
+
   render() {
     const {
       cartSubTotal,
@@ -40,13 +51,23 @@ export default class CartTotals extends Component {
                   <span className="text-title"> total :</span>{" "}
                   <strong>$ {cartTotal} </strong>
                 </h5>
-                {/* <PayPalButton
-                  totalAmount={cartTotal}
-                  clearCart={clearCart}
-                  history={history}
-                /> */}
               </div>
             </div>
+            <div>
+              <button
+                type="button"
+                className="btn btn-outline-danger btn-lg"
+                onClick={this.openCheckoutForm}
+                disabled={!emptyCart ? "" : "disabled"}
+                style={{ width: "100%" }}
+              >
+                Checkout
+              </button>
+            </div>
+            <CheckoutModal
+              visible={this.state.isOpened}
+              close={this.openCheckoutForm}
+            />
           </div>
         )}
       </React.Fragment>
