@@ -50,7 +50,7 @@ const CheckoutForm = ({ onClick }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(
+    console.log(
       `Submitting Name ${firstname} ${email} ${address} ${city}
        ${state}${zip} ${state} ${cardname} ${cardnumber} ${expmonth} ${expyear} ${cvv} ${checked}`
     );
