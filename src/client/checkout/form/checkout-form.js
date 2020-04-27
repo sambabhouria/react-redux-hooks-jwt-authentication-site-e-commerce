@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useInput } from "./custom-input-hooks";
 import "./checkout.css";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ onClick }) => {
   const [checked, setChecked] = useState(false);
   const handleClick = () => setChecked(!checked);
 
@@ -52,7 +52,7 @@ const CheckoutForm = () => {
     evt.preventDefault();
     alert(
       `Submitting Name ${firstname} ${email} ${address} ${city}
-       ${state}${zip} ${state} ${cardname} ${cardnumber} ${expmonth} ${expyear} ${cvv}`
+       ${state}${zip} ${state} ${cardname} ${cardnumber} ${expmonth} ${expyear} ${cvv} ${checked}`
     );
     resetFirstName();
     resetEmail();
@@ -65,6 +65,7 @@ const CheckoutForm = () => {
     resetExpYear();
     resetCvv();
     resetExpmonth();
+    onClick();
   };
 
   return (
@@ -141,7 +142,7 @@ const CheckoutForm = () => {
               </div>
 
               <div className="col-50">
-                <h3>Payment</h3>
+                <h3>Payment</h3>  <span onClick={onClick}></span>
                 <label htmlFor="fname">Accepted Cards</label>
                 <div className="icon-container">
                   <i

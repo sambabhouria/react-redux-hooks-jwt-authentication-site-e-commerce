@@ -13,6 +13,10 @@ export default class CartTotals extends Component {
     this.setState({ isOpened: true });
   };
 
+  closeCheckoutForm = () => {
+    this.setState({ isOpened: false });
+  };
+  
   render() {
     const {
       cartSubTotal,
@@ -66,7 +70,7 @@ export default class CartTotals extends Component {
             </div>
             <CheckoutModal
               visible={this.state.isOpened}
-              close={this.openCheckoutForm}
+              close={this.closeCheckoutForm}
             />
           </div>
         )}
